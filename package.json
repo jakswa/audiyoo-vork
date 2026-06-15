@@ -1,0 +1,14 @@
+{
+  "name": "audiyoo-zork",
+  "version": "1.0.0",
+  "description": "A voice-only browser Zork: speak into the dark, the dungeon speaks back.",
+  "scripts": {
+    "start": "bun server.ts",
+    "test:vad": "bun tests/vad_qa.ts tests/u1.wav --dump",
+    "test:ws": "bun tests/ws_qa.ts"
+  },
+  "dependencies": {
+    "hono": "^4.12.25",
+    "onnxruntime-node": "^1.26.0"
+  }
+}
