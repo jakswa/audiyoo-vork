@@ -64,7 +64,7 @@ Server-side VAD (not browser-side) was chosen so the tricky segmentation logic i
 
 | Var | Default | Notes |
 |---|---|---|
-| `TTS_BACKEND` | `supertonic` | `supertonic` (local, default), `kokoro` (local GPU, fast), or `cartesia` (premium fallback, see below) |
+| `TTS_BACKEND` | `supertonic` | `supertonic` (local CPU, default), `kokoro` (local GPU — snappier *and* better-sounding; pick it if you have a GPU), or `cartesia` (premium fallback, see below) |
 | `SUPERTONIC_URL` | `http://127.0.0.1:7788` | supertonic sidecar base URL |
 | `SUPERTONIC_VOICE` | `M5` | |
 | `SUPERTONIC_STEPS` | `5` | diffusion steps; more = better/slower |
@@ -99,14 +99,20 @@ cache is reused. The server buffers whole clips (no streaming); at `steps=5`
 short replies land in ~500ms once warm. Raise `SUPERTONIC_STEPS` for quality, or
 drop it for speed.
 
+Supertonic is the default because it needs nothing but a CPU. If you have a
+GPU, the kokoro sidecar below beat it on both latency *and* voice quality in
+our testing — it's worth the switch.
+
 ### Local GPU TTS: the Kokoro sidecar (fastest)
 
 `TTS_BACKEND=kokoro` runs [Kokoro-82M](https://hf.co/hexgrad/Kokoro-82M) via a
 persistent, pre-warmed Python sidecar (`kokoro_test/kokoro_sidecar.py`). It's
-local, private, and free like supertonic, but on a GPU it's **~25× faster than
-realtime** (RTF ~0.04 on a 7900 XT, ~200ms per reply) — comfortably under
-conversational latency for a phone-style session. `bun start` does **not**
-spawn it; you run it yourself alongside the app.
+local, private, and free like supertonic — and on the 7900 XT it beat the
+default on both counts: snappier (**~25× faster than realtime**, RTF ~0.04,
+~200ms per reply vs ~500ms) and a little richer-sounding. If a GPU is
+available, this is the backend to run; supertonic stays the default only
+because it asks nothing of your hardware. `bun start` does **not** spawn the
+sidecar; you run it yourself alongside the app.
 
 **What you need.** Just [`uv`](https://docs.astral.sh/uv/) — the script carries
 its own deps (PEP-723 inline metadata; even espeak-ng is bundled via
