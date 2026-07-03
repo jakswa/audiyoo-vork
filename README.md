@@ -1,6 +1,6 @@
-# 🕯️ Audiyoo — voice-only Zork
+# 🕯️ Audiyoo — voice-only Vork
 
-Speak into the dark; the dungeon speaks back. A browser plays **Zork** entirely
+Speak into the dark; the dungeon speaks back. A browser plays **Vork** entirely
 by voice: your mic streams to the server, **Silero VAD** finds your spoken
 commands, **Gemma** (multimodal — it *hears* you, no speech-to-text step)
 narrates as the game, and a **supertonic** model speaks the reply, all on your

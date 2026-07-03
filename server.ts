@@ -296,5 +296,5 @@ app.get("/", async (c) => {
   return c.html(await Bun.file(new URL("./public/index.html", import.meta.url)).text());
 });
 
-console.log(`Zork voice demo on http://localhost:${PORT}  (voice ${VOICE_ID}, llama ${LLAMA_URL})`);
+console.log(`Vork voice demo on http://localhost:${PORT}  (voice ${VOICE_ID}, llama ${LLAMA_URL})`);
 export default { port: PORT, fetch: app.fetch, websocket };
