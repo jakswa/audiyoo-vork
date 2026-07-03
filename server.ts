@@ -17,7 +17,7 @@ import { SileroVAD, encodeWav, FRAME_SAMPLES } from "./vad";
 
 const { upgradeWebSocket, websocket } = createBunWebSocket();
 
-const TTS_BACKEND = (process.env.TTS_BACKEND ?? "cartesia") as "cartesia" | "supertonic";
+const TTS_BACKEND = (process.env.TTS_BACKEND ?? "supertonic") as "cartesia" | "supertonic";
 const CARTESIA_API_KEY = process.env.CARTESIA_API_KEY ?? "";
 // Supertonic local sidecar (supertonic serve) — native /v1/tts endpoint lets us
 // pass `steps` (the OpenAI-compatible /v1/audio/speech does not).
@@ -42,7 +42,7 @@ const CARTESIA_VERSION = process.env.CARTESIA_VERSION ?? "2026-03-01"; // latest
 const PORT = Number(process.env.PORT ?? 3000);
 
 if (TTS_BACKEND === "cartesia" && !CARTESIA_API_KEY) {
-  console.error("Set CARTESIA_API_KEY before starting (or use TTS_BACKEND=supertonic).");
+  console.error("Set CARTESIA_API_KEY before starting (or use the default TTS_BACKEND=supertonic).");
   process.exit(1);
 }
 
