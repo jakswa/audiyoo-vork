@@ -25,8 +25,10 @@ Open it in **Chrome/Edge**, click *enter the underground*, and talk.
 
 **Prerequisites**
 - [Bun](https://bun.sh)
-- A running `llama-server` on `:8001` serving a **multimodal** Gemma
-  (e.g. `unsloth/gemma-4-E4B-it-GGUF:Q4_K_M`), reachable at `LLAMA_URL`.
+- A running `llama-server` on `:8001` serving a **multimodal** Gemma 4 IT
+  model — e.g. `unsloth/gemma-4-12B-it-GGUF:Q4_K_M` or the smaller
+  `unsloth/gemma-4-E4B-it-GGUF:Q4_K_M` (still weighing which one wins here;
+  E4B is nimbler, 12B hears a touch better), reachable at `LLAMA_URL`.
 - The [supertonic](https://pypi.org/project/supertonic/) sidecar for TTS
   (default) — **or**, for the premium fallback, a
   [Cartesia](https://cartesia.ai) API key with `TTS_BACKEND=cartesia`.
